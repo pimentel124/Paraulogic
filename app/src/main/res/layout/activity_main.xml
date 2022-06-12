@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="375dp"
+        android:layout_height="106dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logotip" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/Center"
+        android:layout_width="65dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="200dp"
+        android:backgroundTint="#db0e1d"
+        android:onClick="addLetra"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:textColor="#1B1716"
+        app:cornerRadius="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/Right"
+        android:layout_width="65dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="56dp"
+        android:backgroundTint="#5cbbd4"
+        android:onClick="addLetra"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:textColor="#1B1716"
+        app:cornerRadius="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/Left"
+        android:layout_width="65dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="200dp"
+        android:backgroundTint="#5cbbd4"
+        android:onClick="addLetra"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:textColor="#1B1716"
+        app:cornerRadius="60dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/topRight"
+        android:layout_width="65dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="84dp"
+        android:layout_marginEnd="108dp"
+        android:backgroundTint="#5cbbd4"
+        android:onClick="addLetra"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:textColor="#1B1716"
+        app:cornerRadius="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/bottomLeft"
+        android:layout_width="65dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="312dp"
+        android:backgroundTint="#5cbbd4"
+        android:onClick="addLetra"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:textColor="#1B1716"
+        app:cornerRadius="60dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/bottomRight"
+        android:layout_width="65dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="312dp"
+        android:layout_marginEnd="108dp"
+        android:backgroundTint="#5cbbd4"
+        android:onClick="addLetra"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:textColor="#1B1716"
+        app:cornerRadius="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/topLeft"
+        android:layout_width="65dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="84dp"
+        android:backgroundTint="#5cbbd4"
+        android:onClick="addLetra"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:textColor="#1B1716"
+        app:cornerRadius="60dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/introducida"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="TextView"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <Button
+        android:id="@+id/shuffle"
+        android:layout_width="127dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="520dp"
+        android:layout_marginEnd="45dp"
+        android:onClick="shuffleLetras"
+        android:text="SHUFFLE"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <Button
+        android:id="@+id/suprimeix"
+        android:layout_width="127dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="520dp"
+        android:onClick="removeLetra"
+        android:text="SUPRIMEIX"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <Button
+        android:id="@+id/check"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="45dp"
+        android:onClick="esCorrecta"
+        android:text="✓"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <Button
+        android:id="@+id/solve"
+        android:layout_width="70sp"
+        android:layout_height="48sp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="10dp"
+        android:onClick="showInfo"
+        android:text="SOL"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/respondidas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="436dp"
+        android:text="TextView"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
