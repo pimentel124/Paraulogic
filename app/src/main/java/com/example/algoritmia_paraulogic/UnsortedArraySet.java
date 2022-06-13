@@ -5,12 +5,9 @@ import java.util.Arrays;
 import java.util.Iterator;
 
 /**
- * Clase para contener un conjunto de elementos, esta será empleada para
- * almacenar el conjunto
- * de letras de las que se dispone.
- *
- * @param <E>
- * @author Álvaro
+ * Clase para contener un conjunto de elementos sin ordenar.
+ * @author Álvaro Pimentel Lorente
+ * @param <E> Tipo de los elementos del conjunto.
  */
 public class UnsortedArraySet<E> {
 
@@ -18,9 +15,9 @@ public class UnsortedArraySet<E> {
     private int n;
 
     /**
-     * Reserva memòria per un array de longitud max i inicialitza n a 0
+     * Se genra un array de objetos de tipo E y tamaño inicial maximo.
      *
-     * @param max
+     * @param max tamaño inicial máximo del array.
      */
     public UnsortedArraySet(int max) {
         this.array = (E[]) new Object[max];
@@ -28,10 +25,11 @@ public class UnsortedArraySet<E> {
     }
 
     /**
-     * O(n): cerca lineal
+     * Búsqueda lineal para ver si el elemento está en el conjunto.
+     * O(n): búsqueda lineal.
      *
-     * @param elem
-     * @return boolean
+     * @param elem elemento a buscar.
+     * @return boolean true si el elemento está en el conjunto, false en caso contrario.
      */
     public boolean contains(E elem) {
         for (int i = 0; i < n && !isEmpty(); i++) {
@@ -43,11 +41,11 @@ public class UnsortedArraySet<E> {
     }
 
     /**
-     * O(n): abans d’afegir, ha de comprovar que la clau no existeix dins el
-     * conjunt (cerca lineal)
+     * Inserta un elemento en el conjunto.
+     * O(n): busqueda lineal porque antes de añadir el elemento se busca si ya existe.
      *
-     * @param elem
-     * @return boolean
+     * @param elem elemento a añadir.
+     * @return boolean true si se añade el elemento, false en caso contrario.
      */
     public boolean add(E elem) {
         if (n < this.array.length) {
@@ -65,11 +63,11 @@ public class UnsortedArraySet<E> {
     }
 
     /**
-     * O(n): cal cercar la clau dins el conjunt (cerca lineal) i el darrer
-     * element ha de situar-se a la posició alliberada
+     * Elimina un elemento del conjunto.
+     * O(n): busqueda lineal porque antes de eliminar el elemento se busca si existe.
      *
-     * @param elem
-     * @return boolean
+     * @param elem elemento a eliminar.
+     * @return boolean true si se elimina el elemento, false en caso contrario.
      */
     public boolean remove(E elem) {
         for (int i = 0; i < n && !isEmpty(); i++) {
@@ -83,15 +81,17 @@ public class UnsortedArraySet<E> {
     }
 
     /**
+     * Se comprueba si el conjunto está vacio
      * O(1)
      *
-     * @return boolean
+     * @return boolean true si el conjunto está vacio, false en caso contrario.
      */
     public boolean isEmpty() {
         return n == 0;
     }
 
     /**
+     * Iterador del conjunto.
      * @return IteratorUnsortedArraySet
      */
     public Iterator iterator() {
@@ -99,7 +99,7 @@ public class UnsortedArraySet<E> {
     }
 
     /**
-     * to string method
+     * Método toString para imprimir el conjunto.
      *
      * @return String
      */

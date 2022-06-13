@@ -3,6 +3,10 @@ package com.example.algoritmia_paraulogic;
 import java.util.Iterator;
 import java.util.Stack;
 
+/**
+ * @author Álvaro Pimentel Lorente
+ */
+
 public class BSTMapping<K extends Comparable, V> {
 
     public Iterator iterator() {

@@ -8,6 +8,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * @author Álvaro Pimentel Lorente
+ */
+
 public class RespuestasActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,10 +21,14 @@ public class RespuestasActivity extends AppCompatActivity {
         // todas las soluciones si es necsario
         TextView t = findViewById(R.id.todas_posibles);
         t.setMovementMethod(new ScrollingMovementMethod());
-        // Get the Intent that started this activity
+
+        // Recuperamos el intent que ha lanzado la actividad
         Intent intent = getIntent();
-        // and extract the string
+
+        // Extraemos el texto del intent
         String message = intent.getStringExtra(MainActivity.RESPUESTAS);
+
+        // Asignamos el texto al textview
         t.setText(Html.fromHtml(message));
 }
 }

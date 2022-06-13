@@ -21,28 +21,41 @@ import java.util.Iterator;
 import java.util.Random;
 import java.util.TreeSet;
 
+/**
+ * @author Álvaro Pimentel Lorente
+ */
+
 public class MainActivity extends AppCompatActivity {
 
+    // id para añadir valores extras al intent
     public static final String RESPUESTAS = "respuestas";
 
+    // lista de ids de los botones
     private int[] listaIDs;
 
+    // array de vocales para que el juego siempre contenga una para que se puedan formar palabras
     private final char[] vocales = {'A', 'E', 'I', 'O', 'U'};
 
+    // array de letras del juego
     char[] letrasdisp;
 
+    // ArrayList que contiene todos los tutis de esa partida
     private ArrayList<String> tutis;
 
+    // ArrayList que contiene todas las letras del juego
     private UnsortedArraySet<Character> posiblesLetras;
 
+    // Mapping con Arbol de Busqueda Binario que contiene las palabras que el jugador ha encontrado
+    // y cuantas veces la ha encontrado
     private BSTMapping<String, Integer> correctasSoluciones = new BSTMapping<>();
 
+    // TreeSet que contiene todas las posibles palabras que puede formar el jugador
     private TreeSet<String> diccionario;
 
+    // String que contiene la palabra que el jugador está formando
     private String encurso = "";
 
-    private boolean isTuti;
-
+    // StringBuilder para formar el texto con todas las posibles soluciones que se mostrarán en otra actividad
     private StringBuilder todasSoluciones;
 
 
@@ -53,6 +66,12 @@ public class MainActivity extends AppCompatActivity {
         setup();
     }
 
+    /**
+     * Método para inicializar los componentes de la actividad.
+     * Se genera un array de botones y se guarda su id. Se generan las letras aleatorias y
+     * se genera el diccionario podado. En caso de que el diccionario podado no tenga tuti, se
+     * vuelve a repetir todo el proceso.
+     */
     private void setup() {
 
         listaIDs = new int[]{
@@ -63,13 +82,15 @@ public class MainActivity extends AppCompatActivity {
                 R.id.Right,
                 R.id.bottomLeft,
                 R.id.bottomRight};
-        isTuti = false;
+        boolean isTuti = false;
         while (!isTuti) {
             setLetras();
             gen_Dic();
             isTuti = hayTuti();
         }
-
+        int unicode = 0x2754;
+        Button b = findViewById(R.id.solve);
+        b.setText(new String(Character.toChars(unicode)));
         updateButtons();
         updateAnswer();
         genTextoSoluciones();
@@ -77,6 +98,9 @@ public class MainActivity extends AppCompatActivity {
         t.setText("");
     }
 
+    /**
+     * Método para generar el texto con todas las posibles soluciones que se mostrarán en otra actividad.
+     */
     private void genTextoSoluciones() {
         //generate a string that contains all the words in the dictionary and if the word is in ArrayList tutis, the word is in red
         todasSoluciones = new StringBuilder();
@@ -99,6 +123,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Método para comprobar que una palabra introducida por el usuario es correcta.
+     */
     public void esCorrecta(View view) {
         if (diccionario.contains(encurso)) {
 
@@ -125,7 +152,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
+    /**
+     * Método para generar el set de letras que contendrá el juego
+     */
     private void setLetras() {
         letrasdisp = new char[7];
         posiblesLetras = new UnsortedArraySet<>(7);
@@ -147,6 +176,9 @@ public class MainActivity extends AppCompatActivity {
         updateButtons();
     }
 
+    /**
+     * Método para actualizar los botones de la actividad.
+     */
     private void updateButtons() {
         for (int i = 0; i < listaIDs.length; i++) {
             Button b = findViewById(listaIDs[i]);
@@ -154,6 +186,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Método para añadir la letra pulsada del botón a la palabra que se esta construyendo.
+     */
     public void addLetra(View view) {
         int id = view.getId();
         Button b = (Button) findViewById(id);
@@ -162,11 +197,17 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Método para actualizar la palabra que se esta construyendo.
+     */
     private void updateAnswer() {
         TextView t = findViewById(R.id.introducida);
         t.setText(encurso);
     }
 
+    /**
+     * Método para actualizar el texto con las palabras que se han respondido.
+     */
     private void updateRespondidas() {
         TextView t = findViewById(R.id.respondidas);
 
@@ -189,6 +230,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Método encargado para eliminar la útima letra de la palabra que se esta construyendo.
+     */
     public void removeLetra(View view) {
         //remove the last letter from the string
         if (encurso.length() > 0) {
@@ -197,6 +241,9 @@ public class MainActivity extends AppCompatActivity {
         updateAnswer();
     }
 
+    /**
+     * Método encargado de mezclar las letras del set exterior de letras
+     */
     public void shuffleLetras(View view) {
 
         char[] temp = new char[letrasdisp.length - 1];
@@ -226,6 +273,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Método encargado de comprobar si hay un tuti en el diccionario podado
+     * @return true si hay un tuti en el diccionario podado, false en caso contrario
+     */
     private boolean hayTuti() {
 
         tutis = new ArrayList<>();
@@ -252,6 +303,12 @@ public class MainActivity extends AppCompatActivity {
         return tutis.size() != 0;
     }
 
+    /**
+     * Método encargado de generar el diccionario podado a partir del diccionario "catala_filtrat.dic"
+     * Para que una palabra sea añadida al diccionario, se debe cumplir que:
+     * 1. La palabra tiene la letra central
+     * 2. La palabra está únicamente formada por las 7 letras del juego
+     */
     private void gen_Dic() {
         diccionario = new TreeSet<>();
         InputStream is = getResources().openRawResource(R.raw.catala_filtrat);
@@ -282,10 +339,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Método encarado de llamar a la nueva actividad para hacer display de todas las soluciones posibles
+     */
     public void showInfo(View view) {
         Intent intent = new Intent(this, RespuestasActivity.class);
-        //String message = this.listaPalabras.toString();
-        //intent.putExtra(EXTRA_MESSAGE, message);
         intent.putExtra(RESPUESTAS, todasSoluciones.toString());
         startActivity(intent);
     }
