@@ -96,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
         genTextoSoluciones();
         TextView t = findViewById(R.id.respondidas);
         t.setText("");
+
     }
 
     /**
